@@ -2,8 +2,6 @@
 vim.g.mapleader = " "
 -- while in normal mode ("n"), <leader>pv should launch the nvim file explorer.
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
--- dedicate <leader>u to open the undotree sub window
-vim.keymap.set('n', '<leader>u', ':UndotreeShow<CR>')
 
 -- next two use the move command and when highlighted we can shift them around.
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
@@ -58,7 +56,3 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 vim.keymap.set("n", "<leader><leader>", vim.cmd('so'))
 vim.keymap.set('n', 'Y', 'yg$')
 
--- NERDTree
-vim.keymap.set("n", "<leader>nfo", ":NERDTreeFocus<CR>")
-vim.keymap.set("n", "<leader>nfi", ":NERDTreeFind<CR>")
-vim.keymap.set("n", "<leader>nt", ":NERDTreeToggle<CR>")

@@ -71,13 +71,21 @@ return require('packer').startup(function(use)
 			{'L3MON4D3/LuaSnip'},     -- Required
 		}
 	})
-    -- https://github.com/preservim/nerdtree
-    use ({ 'preservim/nerdtree' })
+   -- -- https://github.com/preservim/nerdtree
+   -- use ({ 'preservim/nerdtree' })
 
-    -- https://github.com/ryanoasis/vim-devicons
-    use ({ 'ryanoasis/vim-devicons' })
+   -- -- https://github.com/ryanoasis/vim-devicons
+   -- use ({ 'ryanoasis/vim-devicons' })
 
-    -- https://github.com/Xuyuanp/nerdtree-git-plugin
-    use ({ 'Xuyuanp/nerdtree-git-plugin' })
+   -- -- https://github.com/Xuyuanp/nerdtree-git-plugin
+   -- use ({ 'Xuyuanp/nerdtree-git-plugin' })
+
+   -- https://github.com/nvim-tree/nvim-tree.lua 
+    use ({
+        'nvim-tree/nvim-tree.lua',
+        requires = {
+           'nvim-tree/nvim-web-devicons', -- optional
+        },
+    })
 end)
 

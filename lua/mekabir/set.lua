@@ -24,7 +24,8 @@ vim.opt.hlsearch = true                     -- keep search terms highlighted
 vim.opt.incsearch = true			        -- highlight more and more of the 
 						                    -- search terms as they are modified
 
-vim.opt.termguicolors = false                -- colors
+vim.opt.termguicolors = true                -- colors
+vim.cmd [[ set background=dark ]]           -- sets background to either dark or light
 
 vim.opt.scrolloff = 8                       -- keep an 8 line offset while
                                             -- scrolling
@@ -33,9 +34,14 @@ vim.opt.isfname:append('@-@')               --
 
 vim.opt.updatetime = 50                     -- fast update time
 
-vim.opt.colorcolumn = '120'                  -- color columns
+vim.opt.colorcolumn = '120'                 -- color columns
 vim.g.mapleader = ' '                       -- [Space] is the leader key.
 
 -- for devicons
-vim.opt_global.encoding = 'utf-8'
+vim.opt_global.encoding = 'utf-8'           
 
+vim.api.nvim_set_hl(0, 'cursorline', {      -- highlight cursorline 
+        underdashed = true
+})
+--vim.opt.cursorline = true
+vim.opt.cursorcolumn = true
