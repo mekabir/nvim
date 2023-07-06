@@ -14,7 +14,7 @@ lsp.ensure_installed({
 	'tsserver',
 	'eslint',
 	'lua_ls',
-	'jdtls', 		-- Ecliplse Java Language Server
+	'jdtls', 		-- Eclipse Java Language Server
 	'rust_analyzer',
 })
 
@@ -27,8 +27,15 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 	['<C-Space>'] = cmp.mapping.complete(),
 })
 
+lsp.setup_nvim_cmp({ mapping = cmp_mappings })
+
 lsp.set_preferences({
-	sign_icons = { }
+    sign_icons = {
+        error = 'E',
+        warn = 'W',
+        hint = 'H',
+        info = 'I'
+    }
 })
 
 -- on attach happens after every single buffer that has an lsp that is associated with it. 

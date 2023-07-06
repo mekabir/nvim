@@ -12,8 +12,8 @@ function ColorMyIDE(color)
 	-- 0 for global space so every window gets this.
 	-- Normal is just vim,
 	-- background should equal none
-	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+	--vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+	--vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 end
 
 ColorMyIDE()

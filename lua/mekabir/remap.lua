@@ -26,9 +26,8 @@ vim.keymap.set('x', '<leader>p', '\'_dP')
 -- which allows us to now pur subsequent copies into the system clipboard
 -- and be able to paste the contents elsewhere.
 -- y by itself will keep it in the vim clipboard.
-vim.keymap.set('n', '<leader>y', '\'+y')
-vim.keymap.set('v', '<leader>y', '\'+y')
-vim.keymap.set('n', '<leader>Y', '\'+Y')
+vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 -- deleting to void register
 vim.keymap.set('n', '<leader>d', '\'_d')
