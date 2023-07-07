@@ -1,9 +1,5 @@
 local lsp = require('lsp-zero').preset({})
 
-lsp.on_attach(function(client, bufnr)
-  lsp.default_keymaps({buffer = bufnr})
-end)
-
 -- we have mason.nvim installed so we dont need this
 -- When you don't have mason.nvim installed
 -- You'll need to list the servers installed in your system
@@ -18,6 +14,9 @@ lsp.ensure_installed({
 	'rust_analyzer',
 })
 
+-- Fix undefined global 'vim'
+lsp.nvim_workspace()
+
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
@@ -26,6 +25,10 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 	['<C-y>'] = cmp.mapping.confirm({ select = true }),
 	['<C-Space>'] = cmp.mapping.complete(),
 })
+
+-- now that we have set completion navigation mappings, we need to mute tab and s-tab
+cmp_mappings['<TAB>'] = nil
+cmp_mappings['<S-TAB>'] = nil
 
 lsp.setup_nvim_cmp({ mapping = cmp_mappings })
 
@@ -38,28 +41,42 @@ lsp.set_preferences({
     }
 })
 
+local function lsp_keymaps(bufnr)
+	local opts = { buffer = bufnr, remap = false }
+
+    vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+	vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, opts)
+    vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+	vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end, opts)
+    vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+    vim.keymap.set('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+	vim.keymap.set('i', '<C-h>', function() vim.lsp.buf.signature_help() end, opts)
+	vim.keymap.set('n', '<leader>ws', function() vim.ls.buf.workspace_symbol() end, opts)
+	vim.keymap.set('n', '<leader>df', function() vim.diagnostic.open_float() end, opts)
+	vim.keymap.set('n', ']d', function() vim.diagnostic.goto_next({ border = 'rounded' }) end, opts)
+	vim.keymap.set('n', '[d', function() vim.diagnostic.goto_prev({ border = 'rounded' }) end, opts)
+	vim.keymap.set('n', '<leader>ca', function() vim.lsp.buf.code_action() end, opts)
+	vim.keymap.set('n', '<leader>rr', function() vim.lsp.buf.references() end, opts)
+	vim.keymap.set('n', '<leader>rn', function() vim.lsp.buf.rename() end, opts)
+    vim.keymap.set('n', '<leader>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+    vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting({ async = true })' ]]
+end
+
 -- on attach happens after every single buffer that has an lsp that is associated with it. 
 -- that means we will have all these remaps only exist for the current buffer that we are on
 -- (buffer means text we are editting right currently). Buf if we do have an LSP, we will use
 -- our LSP instead. 
 lsp.on_attach(function(client, bufnr)
-	local opts = { buffer = bufnr, remap = false }
-
-	vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, opts)
-	vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end, opts)
-	vim.keymap.set('n', '<leader>vws', function() vim.lsp.buf.workspace_symbol() end, opts)
-	vim.keymap.set('n', '<leader>vd', function() vim.diagnostic.open_float() end, opts)
-	vim.keymap.set('n', '[d', function() vim.diagnostic.goto_next() end, opts)
-	vim.keymap.set('n', ']d', function() vim.diagnostic.goto_prev() end, opts)
-	vim.keymap.set('n', '<leader>vca', function() vim.lsp.buf.code_action() end, opts)
-	vim.keymap.set('n', '<leader>vrr', function() vim.lsp.buf.references() end, opts)
-	vim.keymap.set('n', '<leader>vrn', function() vim.lsp.buf.rename() end, opts)
-	vim.keymap.set('i', '<C-h>', function() vim.lsp.buf.signature_help() end, opts)
+    lsp_keymaps(bufnr)
 end)
 
 -- end of borrow
 
 -- (Optional) Configure lua language server for neovim
-require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+-- require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
 lsp.setup()
+
+vim.diagnostic.config({
+    virtual_text = true
+})
