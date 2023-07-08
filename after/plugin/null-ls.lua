@@ -23,8 +23,23 @@ null_ls.setup({
 		completion.spell, -- spell checker
 
 		-- python
-		formatting.black, -- python formatting
-		diagnostics.flake8, -- python linting
+		formatting.black.with({
+			extra_args = {
+				"--line-length=120",
+				"--verbose",
+			},
+		}), -- python formatting
+		formatting.isort.with({
+            extra_args = {
+			    "--profile=black",
+            }
+		}),
+		diagnostics.flake8.with({
+			extra_args = {
+				"--max-line-length=120",
+				"--extend-ignore=E203",
+			},
+		}), -- python linting
 
 		-- js
 		diagnostics.eslint, -- JS linting
@@ -47,6 +62,13 @@ null_ls.setup({
 
 		-- lua
 		formatting.stylua, -- lua formatting
+
+		-- rust
+		formatting.rustfmt.with({
+			extra_args = {
+				"--edition=2021",
+			},
+		}),
 	},
 
 	on_attach = function(client, bufnr)

@@ -3,7 +3,18 @@
 -- Only required if you have packer configured as `opt`
 vim.cmd([[packadd packer.nvim]])
 -- https://github.com/wbthomason/packer.nvim/
-return require("packer").startup(function(use)
+local packer = require("packer")
+
+-- Have packer use a popup window
+packer.init {
+    display = {
+        open_fn = function()
+            return require("packer.util").float { border = "rounded" }
+        end,
+    },
+}
+
+packer.startup(function(use)
 	-- Packer can manage itself
 	use("wbthomason/packer.nvim")
 	--https://github.com/nvim-telescope/telescope.nvim
