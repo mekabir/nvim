@@ -3,10 +3,9 @@ function ColorMyIDE(color)
 	-- color the default rose-pine
 	--color = color or 'rose-pine'
 	-- default color catpuccin
-	color = color or 'catppuccin'
+	color = color or "catppuccin"
 	-- set the color scheme
 	vim.cmd.colorscheme(color)
-
 
 	-- make neovim transparent
 	-- 0 for global space so every window gets this.
