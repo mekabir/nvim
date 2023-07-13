@@ -63,6 +63,13 @@ null_ls.setup({
 		-- lua
 		formatting.stylua, -- lua formatting
 
+        -- ruby
+        diagnostics.rubocop,
+
+        formatting.standardrb,
+
+        formatting.erb_lint,
+
 		-- rust
 		formatting.rustfmt.with({
 			extra_args = {
