@@ -45,3 +45,6 @@ vim.api.nvim_set_hl(0, "cursorline", { -- highlight cursorline
 })
 --vim.opt.cursorline = true
 vim.opt.cursorcolumn = true
+
+-- to enable spot placing the cursor using the mouse
+vim.o.mouse = 'a'
