@@ -42,6 +42,10 @@ packer.startup(function(use)
 		--			vim.cmd('colorscheme catppuccin')
 		--		end
 	})
+    -- https://github.com/xiyaowong/transparent.nvim
+    use({
+        "xiyaowong/transparent.nvim"
+    })
 	-- the following is an example of translating from Plug to packer
 	-- https://github.com/nvim-treesitter/nvim-treesitter
 	use({

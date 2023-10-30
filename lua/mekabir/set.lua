@@ -40,8 +40,8 @@ vim.g.mapleader = " " -- [Space] is the leader key.
 -- for devicons
 vim.opt_global.encoding = "utf-8"
 
-vim.api.nvim_set_hl(0, "cursorline", { -- highlight cursorline
-	underdashed = true,
-})
+--vim.api.nvim_set_hl(0, "cursorline", { -- highlight cursorline
+--	underdashed = true,
+--})
 --vim.opt.cursorline = true
-vim.opt.cursorcolumn = true
+--vim.opt.cursorcolumn = true

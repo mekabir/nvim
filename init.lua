@@ -4,3 +4,4 @@ vim.g.loaded_netrwPlugin = 1
 require("mekabir")
 
 vim.cmd([[colorscheme catppuccin]])
+vim.g.transparent_enabled = true
