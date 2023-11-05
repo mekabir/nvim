@@ -45,3 +45,6 @@ vim.opt_global.encoding = "utf-8"
 --})
 --vim.opt.cursorline = true
 --vim.opt.cursorcolumn = true
+
+-- to enable spot placing the cursor using the mouse
+vim.o.mouse = 'a'

@@ -55,3 +55,9 @@ vim.keymap.set("n", "<leader><leader>", vim.cmd("so"))
 vim.keymap.set("n", "Y", "yg$")
 
 vim.keymap.set("n", "<leader>fmt", "<cmd>Format<CR>")
+
+
+-- insert === and date
+vim.keymap.set("n", "<leader>==", function()
+    vim.cmd(string.format("insert\n=================%s=================", os.date("%m.%d.%Y")))
+end)
