@@ -3,5 +3,8 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 require("mekabir")
 
-vim.cmd([[colorscheme catppuccin]])
+-- for gruvbox
+vim.o.background = "dark" -- or "light" for light mode
+vim.cmd([[colorscheme gruvbox]])
+-- vim.cmd([[colorscheme catppuccin]])
 vim.g.transparent_enabled = true

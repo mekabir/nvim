@@ -28,6 +28,12 @@ packer.startup(function(use)
     -- https://github.com/ThePrimeagen/harpoon
     use({ "theprimeagen/harpoon" })
 
+-----------------------------------Autocompletion------------------------------
+    use {
+        "windwp/nvim-autopairs",
+        config = function() require("nvim-autopairs").setup {} end
+    }
+
 -----------------------------------Color Schemes-------------------------------
 	-- setting  :colorscheme ron.
 	-- https://github.com/rose-pine/neovim
@@ -46,6 +52,10 @@ packer.startup(function(use)
 		--			vim.cmd('colorscheme catppuccin')
 		--		end
 	})
+    -- https://github.com/ellisonleao/gruvbox.nvim
+    use({
+        "ellisonleao/gruvbox.nvim"
+    })
     -- https://github.com/xiyaowong/transparent.nvim
     use({
         "xiyaowong/transparent.nvim"

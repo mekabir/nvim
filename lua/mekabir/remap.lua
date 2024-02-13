@@ -46,7 +46,7 @@ vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
 -- it will setup a find and replace string prepopulated with the word the cursor is on.
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>/", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- chmod a+x a file with a shebang into an executable.
 vim.keymap.set("n", "<leader>x", "<cmd>! chmod +x %<CR>", { silent = true })
